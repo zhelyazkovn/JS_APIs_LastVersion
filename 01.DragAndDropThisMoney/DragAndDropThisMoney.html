@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        img {position:absolute;}
+    </style>
+    <script>
+        var suitCase = document.getElementById('suitcase');
+
+        function changeSuitState(state) {
+            var img = document.getElementById("suitcase");
+            img.src = "" + state + "Suitcase.png";
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("dragged-id", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("dragged-id");
+            var elementToRemove = document.getElementById(data);
+            container.removeChild(elementToRemove);
+        }
+
+        //load some more styles
+        function LoadImages() {
+            suitcase.style.display = "inline";
+            suitcase.style.cssFloat = "left";
+
+            var container = document.getElementById("container");
+            container.style.display = "inline";
+            container.style.cssFloat = "right";
+            container.style.width = 400 + "px";
+            container.style.height = 100 + "px";
+        }
+    </script>
+</head>
+<body onload="LoadImages()">
+    <div id="suitcaseWrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img id="suitcase" src="closedSuitcase.png" ondragover="changeSuitState('opened')" onmouseout="changeSuitState('closed')"/></div>
+    <div id="container">
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="60px" height="50px" style="margin-top:50px;"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img1" width="60px" height="50px" style="margin-left:70px; margin-top:30px"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img2" width="60px" height="50px" style="margin-left:140px; margin-top:20px"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img4" width="60px" height="50px"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img5" width="60px" height="50px"style="margin-left:290px; margin-top:100px"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img6" width="60px" height="50px"style="margin-left:200px; margin-top:40px"/>
+        <img  src="2001.jpg" draggable="true" ondragstart="drag(event)" id="Img3" width="60px" height="50px"style="margin-left:75px; margin-top:150px"/>
+    </div>
+</body>
+</html>
